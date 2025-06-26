@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "374164356163",
+    "project_id": "nordisk-mashscore",
+    "storage_bucket": "nordisk-mashscore.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374164356163:android:69df8bfce7f02609fba8f6",
+        "android_client_info": {
+          "package_name": "com.nordisk.nordisk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGvT9-HYDOfh2xlRwfJOfL-N-GlJLicgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
