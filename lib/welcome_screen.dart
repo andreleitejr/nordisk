@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nordisk/auth/auth_handler.dart';
 import 'package:nordisk/mashscore_app.dart';
 
@@ -10,7 +11,6 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Imagem de fundo
           Positioned.fill(
             child: Image.asset('assets/background.jpg', fit: BoxFit.cover),
           ),
@@ -35,7 +35,7 @@ class WelcomePage extends StatelessWidget {
                   const SizedBox(height: 400),
                   Text(
                     'Promovendo mudanças para prevenir doenças crônicas',
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
                       color: Colors.white,
@@ -45,7 +45,10 @@ class WelcomePage extends StatelessWidget {
                   const SizedBox(height: 6),
                   Text(
                     'Estamos trabalhando em parceria para criar um futuro com menos pessoas vivendo com diabetes tipo 2 e obesidade.',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    style: GoogleFonts.roboto(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -58,24 +61,29 @@ class WelcomePage extends StatelessWidget {
             left: 24,
             right: 24,
             bottom: 48,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AuthHandler()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.indigo,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32),
+            child: SizedBox(
+              height: 56,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AuthHandler(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.indigo,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-              ),
-              child: const Text(
-                'Entrar',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                child: const Text(
+                  'Entrar',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),

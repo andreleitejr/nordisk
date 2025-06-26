@@ -4,24 +4,35 @@ import 'package:nordisk/tabs/form_tab.dart';
 import 'package:nordisk/tabs/home_tab.dart';
 import 'package:nordisk/tabs/map_tab.dart';
 import 'package:nordisk/tabs/profile_tab.dart';
+import 'package:nordisk/theme/theme_colors.dart';
+import 'package:nordisk/theme/theme_icons.dart';
 import 'package:nordisk/widgets/health_data_notifier.dart';
+import 'package:nordisk/widgets/icon_widget.dart';
 import 'package:provider/provider.dart';
 
 // 4. Tela Principal (HomeScreen)
-class HomeScreen extends StatefulWidget {
+class MainScreen extends StatefulWidget {
   final User user;
+  final int initialTabIndex;
 
-  const HomeScreen({super.key, required this.user});
+  const MainScreen({super.key, required this.user, this.initialTabIndex = 0});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _MainScreenState createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MainScreenState extends State<MainScreen> {
+  int currentStep = 1;
+  int currentTabIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    currentTabIndex = widget.initialTabIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
-    int currentStep = 1;
-    int currentTabIndex = 0;
 
     return Consumer<HealthDataNotifier>(
       builder: (context, notifier, child) {
@@ -43,39 +54,43 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.home,
-                        color: currentTabIndex == 0
-                            ? Colors.indigo
-                            : Colors.grey.shade600,
-                      ),
+                    TextButton(
                       onPressed: () => setState(() => currentTabIndex = 0),
+                      child: IconWidget(
+                        icon: ThemeIcons.home,
+                        color: currentTabIndex == 0
+                            ? ThemeColors.primary
+                            : Colors.grey.shade600,
+                        size: 24,
+                      ),
                     ),
                     IconButton(
-                      icon: Icon(
-                        Icons.health_and_safety,
+                      icon: IconWidget(
+                        icon: ThemeIcons.bookOpen,
                         color: currentTabIndex == 1
-                            ? Colors.indigo
+                            ? ThemeColors.primary
                             : Colors.grey.shade600,
+                        size: 24,
                       ),
                       onPressed: () => setState(() => currentTabIndex = 1),
                     ),
                     IconButton(
-                      icon: Icon(
-                        Icons.map_outlined,
+                      icon: IconWidget(
+                        icon: ThemeIcons.mapPin,
                         color: currentTabIndex == 2
-                            ? Colors.indigo
+                            ? ThemeColors.primary
                             : Colors.grey.shade600,
+                        size: 24,
                       ),
                       onPressed: () => setState(() => currentTabIndex = 2),
                     ),
                     IconButton(
-                      icon: Icon(
-                        Icons.person_outline,
+                      icon: IconWidget(
+                        icon: ThemeIcons.shoppingCart,
                         color: currentTabIndex == 3
-                            ? Colors.indigo
+                            ? ThemeColors.primary
                             : Colors.grey.shade600,
+                        size: 24,
                       ),
                       onPressed: () => setState(() => currentTabIndex = 3),
                     ),

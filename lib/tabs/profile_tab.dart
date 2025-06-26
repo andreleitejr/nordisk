@@ -1,7 +1,8 @@
-// lib/screens/profile_tab.dart
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nordisk/theme/theme_colors.dart';
 import 'package:nordisk/widgets/health_data_notifier.dart';
+import 'package:nordisk/widgets/reward_card_widget.dart';
 import 'package:nordisk/widgets/title_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class ProfileTab extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
+        leading: const SizedBox.shrink(),
         title: TitleWidget(title: 'Programa de Trocas'),
       ),
       body: SingleChildScrollView(
@@ -26,131 +28,100 @@ class ProfileTab extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: ThemeColors.secondary,
-                  border: Border.all(color: ThemeColors.primary),
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.monetization_on_outlined,
-                          color: ThemeColors.primary,
-                        ),
-                        Text(
-                          'Saldo de Tourinhos:',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          notifier.mashScore.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-
-                    Text(
-                      'Troque seus Tourinhos por brindes incríveis',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   padding: const EdgeInsets.all(24),
+              //   decoration: BoxDecoration(
+              //     color: ThemeColors.secondary,
+              //     border: Border.all(color: ThemeColors.primary),
+              //     borderRadius: BorderRadius.circular(24),
+              //   ),
+              //   child: Column(
+              //     children: [
+              //       // Row(
+              //       //   children: [
+              //       //     Icon(
+              //       //       Icons.monetization_on_outlined,
+              //       //       color: ThemeColors.primary,
+              //       //     ),
+              //       //     Text(
+              //       //       'Saldo de Tourinhos:',
+              //       //       style: TextStyle(
+              //       //         fontWeight: FontWeight.bold,
+              //       //         fontSize: 16,
+              //       //       ),
+              //       //     ),
+              //       //     Text(
+              //       //       notifier.mashScore.toString(),
+              //       //       style: TextStyle(
+              //       //         fontWeight: FontWeight.bold,
+              //       //         fontSize: 16,
+              //       //       ),
+              //       //     ),
+              //       //   ],
+              //       // ),
+              //       // const SizedBox(height: 12),
+              //       // Text(
+              //       //   'Troque seus Tourinhos por brindes incríveis',
+              //       //   style: TextStyle(fontSize: 14),
+              //       // ),
+              //     ],
+              //   ),
+              // ),
               const SizedBox(height: 24),
               Text(
-                'Brindes Exclusivos',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                decoration: BoxDecoration(
-                  color: ThemeColors.secondary,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 24),
-                    Container(
-                      height: 200,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            'https://images.tcdn.com.br/img/img_prod/692716/copo_termico_stanley_com_tampa_preto_473ml_5421_1_847c8fa38e2233a153a77ba514172695_20221107155916.jpg',
-                          ),
-                          fit: BoxFit.contain,
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-
-                    const SizedBox(height: 16),
-                    Text(
-                      'Copo Stanley Novo Nordisk',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-
-                    Text(
-                      'Mantenha sua bebida gelada com estilo!',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Color(0xFFbbffe1),
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 6,
-                            offset: Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Text(
-                        '50 Tourinhos',
-                        style: TextStyle(color: Color(0xFF124d34)),
-                      ),
-                    ),
-                  ],
+                'Cupons disponíveis',
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
               ),
               const SizedBox(height: 24),
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: ThemeColors.secondary,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: ThemeColors.primary)
-                ),
-                child: Text(
-                  'Acumule Tourinhos através de suas atividades e participações no programa Novo Nordisk.\n\nEscolha seu brinde desejado na lista acima e veja quantos Tourinhos você precisa para resgatá-lo.\n\nPara resgatar, clique no brinde e siga as instruções na janela pop-up (funcionalidade a ser implementada).',
-                ),
+              RewardCard(
+                imageAsset: 'assets/liveup.png',
+                title: 'Desconto em Marcas Saudáveis (LivUp)',
+                description:
+                    'Aproveite descontos exclusivos em refeições saudáveis da LivUp.',
               ),
+              const SizedBox(height: 24),
+              RewardCard(
+                imageAsset: 'assets/spa.png',
+                title: 'Desconto Buddha Spa',
+                description:
+                    'Relaxe e cuide-se com 10% de desconto em procedimentos selecionados no Buddha Spa.',
+              ),
+              const SizedBox(height: 24),
+              RewardCard(
+                imageAsset: 'assets/novodia.png',
+                title: 'Atendimento Multidisciplinar Online (NovoDia)',
+                description:
+                    'Acesso a cupons para consultas gratuitas com especialistas em Educação Física, Nutrição, Psicologia e Enfermagem do Programa NovoDia.',
+              ),
+              const SizedBox(height: 24),
+              RewardCard(
+                imageAsset: 'assets/zenklub.png',
+                title: 'Desconto Zenklub (NovoDia)',
+                description:
+                    'Descontos em sessões de psicanálise, psicologia e terapia online pelo Zenklub, via Programa NovoDia.',
+              ),
+              const SizedBox(height: 24),
+              RewardCard(
+                imageAsset: 'assets/medicamento.png',
+                title: 'Desconto em Medicamentos Novo Nordisk',
+                description:
+                    'Cupons para preços diferenciados na compra de medicamentos Novo Nordisk participantes em farmácias credenciadas.',
+              ),
+              // const SizedBox(height: 24),
+              // Container(
+              //   padding: const EdgeInsets.all(16),
+              //   decoration: BoxDecoration(
+              //     color: ThemeColors.secondary,
+              //     borderRadius: BorderRadius.circular(12),
+              //     border: Border.all(color: ThemeColors.primary),
+              //   ),
+              //   child: Text(
+              //     'Acumule Tourinhos através de suas atividades e participações no programa Novo Nordisk.\n\nEscolha seu brinde desejado na lista acima e veja quantos Tourinhos você precisa para resgatá-lo.\n\nPara resgatar, clique no brinde e siga as instruções na janela pop-up (funcionalidade a ser implementada).',
+              //   ),
+              // ),
             ],
           ),
         ),

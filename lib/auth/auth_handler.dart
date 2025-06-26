@@ -69,6 +69,6 @@ class _AuthHandlerState extends State<AuthHandler> {
         ),
       );
     }
-    return HomeScreen(user: _user!);
+    return MainScreen(user: _user!);
   }
 }

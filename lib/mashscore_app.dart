@@ -9,7 +9,7 @@ class MashscoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mashscore de Saúde',
+      title: 'Novo Nordisk - Mashscore de Saúde',
       theme: ThemeData(
         primaryColor: const Color(0xFF001964),
         fontFamily: 'sans-serif',

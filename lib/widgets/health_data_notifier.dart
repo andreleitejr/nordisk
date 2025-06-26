@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
@@ -33,12 +34,6 @@ class HealthDataNotifier extends ChangeNotifier {
   void setHasCholesterol(bool value) {
     hasCholesterol = value;
     calculateMashScore();
-  }
-
-
-  void setUploadedExamFile(String path) {
-    uploadedExamFilePath = path;
-    notifyListeners();
   }
 
   // Estados de gamificação e UI
@@ -131,7 +126,7 @@ class HealthDataNotifier extends ChangeNotifier {
   void calculateMashScore() {
     double currentScore = 0;
     int currentFilledFields = 0;
-    const int totalInputFields = 13;
+    const int totalInputFields = 9;
 
     final newIndividualFieldTourinhos = Map<String, bool>.from(
       _individualFieldTourinhos,
@@ -317,14 +312,37 @@ class HealthDataNotifier extends ChangeNotifier {
     }
     _bonusTourinhos = newBonusTourinhos;
 
-    if (currentScore <= 80 && currentFilledFields == totalInputFields) {
+    if (currentScore <= 50 && currentFilledFields == totalInputFields) {
       _showLowScoreMessage = true;
-      _lowScoreBenefit = Random().nextBool() ? 'medico' : 'acompanhamento';
+      _lowScoreBenefit = 'baixo';
+    } else if (currentScore <= 90 && currentFilledFields == totalInputFields) {
+      _showLowScoreMessage = true;
+      _lowScoreBenefit = 'medio';
+    } else if (currentScore > 90 && currentFilledFields == totalInputFields) {
+      _showLowScoreMessage = true;
+      _lowScoreBenefit = 'alto';
     } else {
       _showLowScoreMessage = false;
-      _lowScoreBenefit = '';
     }
 
-    notifyListeners(); // Notifica os widgets que os dados mudaram
+    notifyListeners();
   }
+
+  String? uploadedExamFileName;
+  Uint8List? uploadedExamFileBytes;
+
+  void setUploadedExamFile(String path) {
+    uploadedExamFilePath = path;
+    uploadedExamFileName = path.split('/').last;
+    uploadedExamFileBytes = null;
+    notifyListeners();
+  }
+
+  void setUploadedExamFileFromBytes(String name, Uint8List bytes) {
+    uploadedExamFileName = name;
+    uploadedExamFileBytes = bytes;
+    uploadedExamFilePath = null;
+    notifyListeners();
+  }
+
 }

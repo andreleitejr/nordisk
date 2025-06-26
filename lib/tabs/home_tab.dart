@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:nordisk/main_screen.dart';
 import 'package:nordisk/theme/theme_colors.dart';
+import 'package:nordisk/theme/theme_icons.dart';
 import 'package:nordisk/widgets/health_data_notifier.dart';
+import 'package:nordisk/widgets/icon_widget.dart';
 import 'package:nordisk/widgets/title_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -81,87 +85,100 @@ class HomeTab extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Bem-vindo,'),
+                      Text(
+                        'Bem-vindo,',
+                        style: GoogleFonts.roboto(
+                          fontWeight: FontWeight.bold,
+                          color: ThemeColors.primary,
+                          fontSize: 12,
+                        ),
+                      ),
                       TitleWidget(title: 'John Doe'),
                     ],
                   ),
                 ],
               ),
-              const SizedBox(height: 48),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.indigo),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text(
-                            "Mashscore",
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                          Text(
-                            notifier.mashScore.toStringAsFixed(0),
-                            style: const TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.indigo,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 24),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.amber),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text(
-                            "Nível Atual",
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                          Text(
-                            notifier.level.toString(),
-                            style: const TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.amber,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // const SizedBox(height: 48),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   children: [
+              //     Expanded(
+              //       child: Container(
+              //         padding: const EdgeInsets.all(16),
+              //         decoration: BoxDecoration(
+              //           border: Border.all(color: Colors.indigo),
+              //           borderRadius: BorderRadius.circular(12),
+              //         ),
+              //         child: Column(
+              //           children: [
+              //             const Text(
+              //               "Mashscore",
+              //               style: TextStyle(fontSize: 16, color: Colors.grey),
+              //             ),
+              //             Text(
+              //               notifier.mashScore.toStringAsFixed(0),
+              //               style: const TextStyle(
+              //                 fontSize: 28,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.indigo,
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //     const SizedBox(width: 24),
+              //     Expanded(
+              //       child: Container(
+              //         padding: const EdgeInsets.all(16),
+              //         decoration: BoxDecoration(
+              //           border: Border.all(color: Colors.amber),
+              //           borderRadius: BorderRadius.circular(12),
+              //         ),
+              //         child: Column(
+              //           children: [
+              //             const Text(
+              //               "Nível Atual",
+              //               style: TextStyle(fontSize: 16, color: Colors.grey),
+              //             ),
+              //             Text(
+              //               notifier.level.toString(),
+              //               style: const TextStyle(
+              //                 fontSize: 28,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.amber,
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               const SizedBox(height: 48),
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: Colors.amberAccent,
-                  border: Border.all(color: Colors.amber),
-                  borderRadius: BorderRadius.circular(24)
+                  color: Color(0xFFfef9c3),
+                  border: Border.all(color: Color(0xFFcf9518)),
+                  borderRadius: BorderRadius.circular(24),
                 ),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.card_giftcard),
+                        IconWidget(
+                          icon: ThemeIcons.gift,
+                          color: Color(0xFFcf9518),
+                          size: 20,
+                        ),
+                        const SizedBox(width: 8),
                         Text(
                           'Você aprendeu mais sobre o Mash!',
-                          style: TextStyle(
-                            color: Colors.brown,
+                          style: GoogleFonts.montserrat(
+                            color: Color(0xFF854d0e),
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -170,25 +187,48 @@ class HomeTab extends StatelessWidget {
                     ),
                     Text(
                       'Resgate seu cupom para ter uma vida mais saudável',
-                      style: TextStyle(
-                        color: Colors.brown,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                      style: GoogleFonts.roboto(
+                        color: Color(0xFF854d0e),
+                        fontSize: 12,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.brown,
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Resgate seu cupom',
-                            style: TextStyle(color: Colors.white),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 56,
+                      width: double.infinity,
+                      child: TextButton(
+                        onPressed: () {Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainScreen(
+                              user: user,
+                              initialTabIndex: 3,
+                            ),
                           ),
-                          Icon(Icons.arrow_forward, color: Colors.white),
-                        ],
+                        );},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFFeab308),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'Resgate seu cupom',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            Icon(Icons.arrow_forward, color: Colors.white),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -198,11 +238,13 @@ class HomeTab extends StatelessWidget {
               Container(
                 height: 200,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/image.jpg'),
-                  fit: BoxFit.cover),
+                  image: DecorationImage(
+                    image: AssetImage('assets/image.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                   borderRadius: BorderRadius.circular(24),
                 ),
-              )
+              ),
             ],
           ),
         ),

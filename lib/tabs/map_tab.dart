@@ -63,6 +63,7 @@ class _MapTabState extends State<MapTab> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
+        leading: const SizedBox.shrink(),
         title: TitleWidget(title: 'Check-ups Próximos'),
       ),
       body: Stack(

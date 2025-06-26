@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nordisk/theme/theme_colors.dart';
 
 class TitleWidget extends StatelessWidget {
@@ -10,7 +11,7 @@ class TitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: TextStyle(
+      style: GoogleFonts.montserrat(
         fontWeight: FontWeight.bold,
         color: ThemeColors.primary,
         fontSize: 16,
