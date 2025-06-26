@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
@@ -15,35 +18,42 @@ class RewardCard extends StatelessWidget {
     required this.title,
     required this.description,
   });
-
+  String _generateRandomCode() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    final rand = Random.secure();
+    return List.generate(6, (index) => chars[rand.nextInt(chars.length)]).join();
+  }
   void _showDialog(BuildContext context) {
+    final couponCode = _generateRandomCode();
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        title: Center(child: Text(
-          'Aqui está seu código de cupom!',
-          style: GoogleFonts.montserrat(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2,
-            color: Colors.black87,
+        title: Center(
+          child: Text(
+            'Aqui está seu código de cupom!',
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              color: Colors.black87,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
-        ),),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.check_circle, color: Color(0xFF14A44D)),
-                SizedBox(width: 8),
+                const Icon(Icons.check_circle, color: Color(0xFF14A44D)),
+                const SizedBox(width: 8),
                 SelectableText(
-                  'STC5D3',
+                  couponCode,
                   style: GoogleFonts.montserrat(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -53,16 +63,42 @@ class RewardCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Cupom gerado com sucesso',
-              style: GoogleFonts.roboto(
-                fontSize: 14,
-                color: Colors.black87,
-              ),
+              style: GoogleFonts.roboto(fontSize: 14, color: Colors.black87),
             ),
           ],
         ),
+        actions: [
+          SizedBox(
+            width: double.infinity,
+            child: TextButton(
+              onPressed: () {
+                Clipboard.setData( ClipboardData(text: couponCode));
+                Navigator.of(context).pop();
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: const Color(0xFF14A44D),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                'Copiar',
+                style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
